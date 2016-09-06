@@ -12,6 +12,18 @@ Given(/^DMZ内部のサーバ$/) do
   @dmz_server = Netns.new(attributes_for(:dmz_server))
 end
 
+Given(/^Internet上のPC$/) do
+  @internet_pc = Netns.new(attributes_for(:ex_network))
+end
+
+Given(/^B社のPC$/) do
+  @b_pc = Netns.new(attributes_for(:b_pc))
+end
+
+Given(/^VPNサーバ$/) do
+  @vpn_server = Netns.new(attributes_for(:vpn_server))
+end
+
 Given(/^Google Public DNS$/) do
   @google_dns = Netns.new(attributes_for(:ex_network))
   system "sudo ip netns exec ex_network iptables -t nat -A PREROUTING -j DNAT --to-destination 198.51.100.1"
